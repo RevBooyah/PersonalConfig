@@ -120,6 +120,23 @@ set pastetoggle=<F2>
 set cursorline
 
 
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" faster than typeing make
+map <f9> :make
+set makeprg=make
+"  debug help=>   :copen, :cclose, :cw 
+
+" Easy PHP testing
+map <C-M> :w!<CR>:!/usr/bin/php -l %<CR>
+" Execute PHP - doesn't check filetype!
+map <C-m> :w!<CR>:!/usr/bin/php %<CR>
+
+
 " Use ; instead of : to enter commands, saves a lot of keystrokes in the long run
 nnoremap ; :
 
