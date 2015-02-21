@@ -2,12 +2,11 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" to install Vundle.vim (and for the vundle stuff below to work), run:
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -16,8 +15,11 @@ Plugin 'tobyS/vmustache'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+"Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
 "Bundle 'joonty/vim-phpqa.git'
 "     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -41,6 +43,12 @@ filetype plugin indent on    " required
 " For PHP Documenter (pdv)
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+
+let g:airline_powerline_fonts = 1
+function! AirlineThemePatch(palette)
+      let a:palette.accents.bold_yellow = [ '#ffffff', '', 0, '', 'bold' ]
+endfunction
+let g:airline_theme_patch_func = 'AirlineThemePatch'
 
 " For ultisnips plugin
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -69,11 +77,50 @@ set backspace=indent,eol,start
 " Show line numbers.
 set number
 
+" Set 8 lines to the cursor.
+set so=7
+" show position always
+set ruler
+"set cmdheight=2
+set lazyredraw
+
+"set modelines " security related - I don't have anything that uses modelines
+set encoding=utf-8
+
+let mapleader = ","
+
 "colorscheme wallaby
 "colorscheme ir_black
 colorscheme wombat256mod
 " Automatically indent on new lines
-" set autoindent
+set autoindent
+"set ai
+"set si
+
+"nnoremap / /\v
+"vnoremap / /\v
+
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Depending on keyboard, this fixes an annoying problem
+" who needs help anyway...
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+if has("mac") || has("macunix")
+nmap <D-j> <M-j>
+nmap <D-k> <M-k>
+vmap <D-j> <M-j>
+vmap <D-k> <M-k>
+endif
+
 " Copy the indentation of the previous line if auto indent doesn't know what to do
 set copyindent
 " Indenting a line with >> or << will indent or un-indent by 4
@@ -119,7 +166,6 @@ set pastetoggle=<F2>
 "turns on the background for the current line
 set cursorline
 
-
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -129,13 +175,12 @@ map <C-l> <C-W>l
 " faster than typeing make
 map <f9> :make
 set makeprg=make
-"  debug help=>   :copen, :cclose, :cw 
+"  debug help=>   :copen, :cclose, :cw
 
 " Easy PHP testing
 map <C-M> :w!<CR>:!/usr/bin/php -l %<CR>
 " Execute PHP - doesn't check filetype!
 map <C-m> :w!<CR>:!/usr/bin/php %<CR>
-
 
 " Use ; instead of : to enter commands, saves a lot of keystrokes in the long run
 nnoremap ; :
@@ -157,6 +202,77 @@ inoremap <C-@> <C-x><C-o>
 
 map ff ggVG=  " re-indent the entire file.
 
+" ft = fold tag (in HTML)
+nnoremap <leader>ft Vatzf
+
+" strip all trailing whitespace from the file
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" HARD REWRAP - useful for text writing of paragraphs
+nnoremap <leader>q gqip
+
+" Open a split window (vertically)
+nnoremap <leader>w <C-w>v<C-w>l
+
+" open a split horizontally
+nnoremap <leader>s <C-w>s<C-w>l
+
+" tabs stuff
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader>q :tabclose<CR>
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-q> :tabclose<CR>
+"nnoremap <C-S-t>     :tabclose<CR>
+"inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-t> <Esc>:tabnew<CR>
+inoremap <C-q> <Esc>:tabclose<CR>
+"inoremap <C-S-t>     <Esc>:tabclose<CR>
+
+nnoremap < :tabp<CR>
+" instead of/or with: gt
+nnoremap > :tabn<CR>
+" instead of/or with:  gT
+" Might change ,, to be :wq
+let notabs = 0
+nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
+
+" These only work in gvim
+"nnoremap <C-Left> :tabprevious<CR>
+"nnoremap <C-Right> :tabnext<CR>
+"nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+"nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+
+set switchbuf=usetab
+nnoremap <F8> :sbnext<CR>
+nnoremap <S-F8> :sbprevious<CR>
+
+
+" Status bar stuff
+set laststatus=2
+"set statusline=%<%f%<%{FileTime()}%<%h%m%r%=%-20.(line=%03l,col=%02c%V,totlin=%L%)\%h%m%r%=%-30(,BfNm=%n%Y%)\%P\*%=%{CurTime()}
+"set rulerformat=%15(%c%V\ %p%%%)
+"set rulerformat=%<%f%<%{FileTime()}%<%h%m%r%=%-20.(line=%03l,col=%02c%V,totlin=%L%)\%h%m%r%=%-30(,BfNm=%n%Y%)\%P\*%=%{CurTime()}
+
+"fun! FileTime()
+  "let ext=tolower(expand("%:e"))
+  "let fname=tolower(expand('%<'))
+  "let filename=fname . '.' . ext
+  "let msg=""
+  "let msg=msg." ".strftime("(Modified %b,%d %y %H:%M:%S)",getftime(filename))
+  "return msg
+"endf
+"
+"fun! CurTime()
+  "let ftime=""
+  "let ftime=ftime." ".strftime("%b,%d %y %H:%M:%S")
+  "return ftime
+"endf
+
+
+
+"
+" Quickly open .vimrc in a split window
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
