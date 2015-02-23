@@ -22,6 +22,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
+Plugin 'jaxbot/symantic-highlight.vim'
 "Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
 "Bundle 'joonty/vim-phpqa.git'
@@ -196,6 +197,8 @@ call matchadd('ColorColumn', '\%99v', 100)
 filetype plugin on
 au FileType php set omnifunc=phpcomplete#CompletePHP
 
+" Semantic Highlighting. :SemanticHighlight or :SemanticHighlightRevert
+:nnoremap <leader>h :SemanticHighlightToggle<cr>
 
 "Remap ctrl-x ctrl-o TO:  ctrl-<space>  To match eclipse/visual-studio
 inoremap <C-@> <C-x><C-o>
@@ -276,6 +279,8 @@ set laststatus=2
 "
 " Quickly open .vimrc in a split window
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+"Reload vimrc
+nnoremap <leader>rv :source $MYVIMRC<cr>
 
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
