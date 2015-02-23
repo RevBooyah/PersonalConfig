@@ -90,15 +90,23 @@ function ii() # get current host related info
 }
 
 # enable color support of ls and also add handy aliases
+unamestr=`uname`
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90:*.php=36:*.html=37'
+    export LS_COLORS
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -G'
+    alias grep='grep -G'
+    alias fgrep='fgrep -G'
+    alias egrep='egrep -G'
+    export LSCOLORS=dxfxcxdxbxegedabagacad
 fi
 
 # Set the prompt:
