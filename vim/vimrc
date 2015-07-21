@@ -1,3 +1,4 @@
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -28,8 +29,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'valloric/YouCompleteMe'
 "Plugin 'ervandew/screen'
 "Plugin 'ervandew/supertab'
-"Plugin 'joshhartigan/vim-reddit'
-"Plugin 'ryanss/vim-hackernews'
 Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
 " Plugin 'spf13/piv'
@@ -38,6 +37,12 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/Terminus'
 Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'brauner/vimtux'
+Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal 
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/unite.vim'
+Bundle 'm2mdas/phpcomplete-extended'
 
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -54,6 +59,11 @@ Plugin 'yegappan/mru'
 "fuzzy Finder
 Plugin 'eparreno/vim-l9'
 Plugin 'vim-scripts/FuzzyFinder'
+
+"Fun Stuff
+"Plugin 'joshhartigan/vim-reddit'
+"Plugin 'ryanss/vim-hackernews'
+Plugin 'vim-scripts/matrix.vim--Yang'
 
 "Bundle 'joonty/vim-phpqa.git'
 "     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -103,6 +113,9 @@ set noshowmode
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" for phpcomplete-extended
+autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 " For NERDTree  (to startup automatically when no files are selected)
 autocmd StdinReadPre * let s:std_in=1
@@ -246,10 +259,10 @@ set pastetoggle=<F2>
 set cursorline
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 " faster than typeing make
 map <f9> :make
@@ -321,8 +334,8 @@ inoremap <c-a> <esc>I
 noremap <c-a> 0
 inoremap <c-e> <esc>A
 noremap <c-e> $
-inoremap <c-k> d$
-" noremap <c-k> d$  " I have this for switching split
+"inoremap <c-k> <esc>d$
+" noremap <c-k> <esc>d$  " I have this for switching split
 
 
 " tabs stuff
@@ -427,7 +440,7 @@ let g:ycm_semantic_triggers =  {
   \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
   \   'vim' : ['re![_a-zA-Z]+[_\w]*\.']}
 
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 "
 " Quickly open .vimrc in a split window
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
