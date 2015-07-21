@@ -1,4 +1,3 @@
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -18,16 +17,50 @@ Plugin 'tobyS/vmustache'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
-Plugin '2072/PHP-Indenting-for-VIm'
+"Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'jaxbot/symantic-highlight.vim'
-"Plugin 'powerline/powerline'
+Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'valloric/YouCompleteMe'
+"Plugin 'ervandew/screen'
+"Plugin 'ervandew/supertab'
+"Plugin 'joshhartigan/vim-reddit'
+"Plugin 'ryanss/vim-hackernews'
+Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
+" Plugin 'spf13/piv'
+Plugin 'vim-scripts/Better-CSS-Syntax-for-Vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/Terminus'
+Plugin 'vim-scripts/Vim-R-plugin'
+Plugin 'brauner/vimtux'
+
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'tmhedberg/matchit'
+Plugin 'mileszs/ack.vim'
+
+" For snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'yegappan/mru'
+
+"fuzzy Finder
+Plugin 'eparreno/vim-l9'
+Plugin 'vim-scripts/FuzzyFinder'
+
 "Bundle 'joonty/vim-phpqa.git'
 "     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
+"
+" function: TabMerge could be installed
+" http://www.vim.org/scripts/script.php?script_id=1961
+" :Tabmerge [tab number] [top|bottom|left|right]
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,10 +82,22 @@ let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
 let g:airline_powerline_fonts = 1
+
 function! AirlineThemePatch(palette)
       let a:palette.accents.bold_yellow = [ '#ffffff', '', 0, '', 'bold' ]
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
+
+let g:Powerline_symbols         = "fancy"
+let g:airline_theme             = 'powerlineish'
+"let g:airline_theme             = 'wombat'
+
+let g:airline#extensions#tabline#enabled = 1 " automatically displays all buffers when there's only one tab open
+"let g:airline#extensions#tabline#left_sep = ' '            " straight separators
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_idx_mode = 1        
+
+set noshowmode
 
 " For ultisnips plugin
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -72,6 +117,22 @@ let NERDTreeShowHidden=1
 :nnoremap <F5> :buffers<CR>:buffer<Space>
 
 
+" delimitMate Settings;
+" https://github.com/Raimondi/delimitMate
+let delimitMate_expand_cr = 1
+filetype indent plugin on
+
+
+" Taglist settings
+let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_Use_Right_Window=1
+"nmap <leader>g :TlistToggle<CR>
+nnoremap <leader>g :TlistToggle<CR>
+
+
+"turn off visual bell
+set vb t_vb=
+
 " Allows you to have multiple buffers open
 set hidden
 " Lines of code will not wrap to the next line
@@ -90,12 +151,15 @@ set lazyredraw
 
 "set modelines " security related - I don't have anything that uses modelines
 set encoding=utf-8
+set autowrite
+set autoread
 
 let mapleader = ","
 
 "colorscheme wallaby
 "colorscheme ir_black
-colorscheme wombat256mod
+"colorscheme wombat256mod
+colorscheme wombat_scc
 " Automatically indent on new lines
 set autoindent
 "set ai
@@ -104,6 +168,7 @@ set autoindent
 "nnoremap / /\v
 "vnoremap / /\v
 
+" remap to find matching with tabs 
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -113,6 +178,7 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+imap jj <ESC>
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
@@ -124,6 +190,15 @@ nmap <D-k> <M-k>
 vmap <D-j> <M-j>
 vmap <D-k> <M-k>
 endif
+
+"FuzzyFinder Shortcuts
+nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+nmap <leader>b :FufBuffer<CR>
+nmap <leader>T :FufTaggedFile<CR>
+
+" Shifting whole lines with tab.
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
 " Copy the indentation of the previous line if auto indent doesn't know what to do
 set copyindent
@@ -197,8 +272,6 @@ call matchadd('ColorColumn', '\%99v', 100)
 filetype plugin on
 au FileType php set omnifunc=phpcomplete#CompletePHP
 
-" Semantic Highlighting. :SemanticHighlight or :SemanticHighlightRevert
-:nnoremap <leader>h :SemanticHighlightToggle<cr>
 
 "Remap ctrl-x ctrl-o TO:  ctrl-<space>  To match eclipse/visual-studio
 inoremap <C-@> <C-x><C-o>
@@ -206,10 +279,26 @@ inoremap <C-@> <C-x><C-o>
 "  also could use: inoremap <C-space> <C-x><C-o> and then do inoremap <C-@> <c-space>
 "  Depends on GUI or not.
 
+" Bubble single linec
+" NOTE - this doesn't work on mac... 
+nnoremap <silent> <C-Up>   :move-2<CR>==
+nnoremap <silent> <C-Down> :move+<CR>==
+xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
+xnoremap <silent> <C-Down> :move'>+<CR>gv=gv
+
+"Duplicate lines above and below (again - no mac)
+inoremap <C-A-down> <esc>Ypk
+nnoremap <C-A-down> Ypk
+xnoremap <C-A-down> y`>pgv
+inoremap <C-A-up> <esc>YPj
+nnoremap <C-A-up> YPj
+xnoremap <C-A-up> y`<Pgv
+
+
 map ff ggVG=  " re-indent the entire file.
 
 " ft = fold tag (in HTML)
-nnoremap <leader>ft Vatzf
+nnoremap <leader>F Vatzf
 
 " strip all trailing whitespace from the file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
@@ -221,7 +310,20 @@ nnoremap <leader>q gqip
 nnoremap <leader>w <C-w>v<C-w>l
 
 " open a split horizontally
-nnoremap <leader>s <C-w>s<C-w>l
+nnoremap <leader>h <C-w>s<C-w>l
+
+" go to start/end of current line
+noremap H ^
+noremap L g_
+
+" Some emaces habits die hard :)
+inoremap <c-a> <esc>I
+noremap <c-a> 0
+inoremap <c-e> <esc>A
+noremap <c-e> $
+inoremap <c-k> d$
+" noremap <c-k> d$  " I have this for switching split
+
 
 " tabs stuff
 nnoremap <leader>t :tabnew<CR>
@@ -240,7 +342,28 @@ nnoremap > :tabn<CR>
 " instead of/or with:  gT
 " Might change ,, to be :wq
 let notabs = 0
-nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
+nnoremap <silent> <F7> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
+
+" Semantic Highlighting. :SemanticHighlight or :SemanticHighlightRevert
+:nnoremap <leader>h :SemanticHighlightToggle<cr>
+
+" " make these commonly mistyped commands still work:
+command! WQ wq
+command! Wq wq
+command! Wqa wqa
+command! W w
+command! Q q
+
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
 
 " These only work in gvim
 "nnoremap <C-Left> :tabprevious<CR>
@@ -251,6 +374,25 @@ nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Ba
 set switchbuf=usetab
 nnoremap <F8> :sbnext<CR>
 nnoremap <S-F8> :sbprevious<CR>
+
+
+" ,/ will open a quickfix window to show matches of last search buffer
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" ,? will search the directory for any matches of the last search. BOOM. This rocks.
+nnoremap <silent> <leader>? :execute "Ack! '" .  substitute(substitute(substitute(@/, "\\\\<", "\\\\b",""),"\\\\>","\\\\b",""),"\\\\v","","")."'"<CR>
+
+
+" Visual mode search (based on scrooloose's blog post)
+function! s:VSetSearch()
+    let temp = @@
+    norm! gvy
+    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 
 " Status bar stuff
@@ -275,11 +417,20 @@ set laststatus=2
 "endf
 
 
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.']}
 
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 "
 " Quickly open .vimrc in a split window
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-"Reload vimrc
 nnoremap <leader>rv :source $MYVIMRC<cr>
 
 " This rewires n and N to do the highlighing...
@@ -296,3 +447,18 @@ function! HLNext (blinktime)
         call matchdelete(ring)
         redraw
 endfunction
+
+
+if exists("&undodir")
+    set undofile          "Persistent undo! Pure money.
+    let &undodir=&directory
+    set undolevels=1000
+    set undoreload=1000
+endif
+
+
+
+" Cold folding OFF by default for php
+let g:DisableAutoPHPFolding = 1
+"setlocal foldmethod=manual
+"EnableFastPHPFolds
