@@ -164,7 +164,7 @@ set lazyredraw
 
 "set modelines " security related - I don't have anything that uses modelines
 set encoding=utf-8
-set autowrite
+"set autowrite  " I don't like the implications of this when I run in multiple terms and autoread is questionable.
 set autoread
 
 let mapleader = ","
