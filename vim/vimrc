@@ -255,6 +255,9 @@ set t_Co=256
 " So you can paste without autotabs. F2 to toggle on and off
 set pastetoggle=<F2>
 
+" to allow full color background in tmux: (depending on color scheme)
+set t_ut=
+
 "turns on the background for the current line
 set cursorline
 
