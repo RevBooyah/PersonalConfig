@@ -13,10 +13,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Bundle 'tobyS/pdv'
-Plugin 'tobyS/vmustache'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Bundle 'tobyS/pdv'
+"Plugin 'tobyS/vmustache'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Bundle 'jistr/vim-nerdtree-tabs'
@@ -35,26 +35,26 @@ Bundle 'captbaritone/better-indent-support-for-php-with-html'
 Plugin 'vim-scripts/Better-CSS-Syntax-for-Vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/Terminus'
-Plugin 'vim-scripts/Vim-R-plugin'
+"Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'brauner/vimtux'
-Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal 
+Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/unite.vim'
-Bundle 'm2mdas/phpcomplete-extended'
+"Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/unite.vim'
+"Bundle 'm2mdas/phpcomplete-extended'
 
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
+"Plugin 'tpope/vim-commentary'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tmhedberg/matchit'
 Plugin 'mileszs/ack.vim'
 
 " For snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'yegappan/mru'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'yegappan/mru'
 
 "fuzzy Finder
 Plugin 'eparreno/vim-l9'
@@ -63,7 +63,7 @@ Plugin 'vim-scripts/FuzzyFinder'
 "Fun Stuff
 "Plugin 'joshhartigan/vim-reddit'
 "Plugin 'ryanss/vim-hackernews'
-Plugin 'vim-scripts/matrix.vim--Yang'
+"Plugin 'vim-scripts/matrix.vim--Yang'
 
 "Bundle 'joonty/vim-phpqa.git'
 "     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -105,9 +105,10 @@ let g:airline_theme             = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1 " automatically displays all buffers when there's only one tab open
 "let g:airline#extensions#tabline#left_sep = ' '            " straight separators
 "let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#buffer_idx_mode = 1        
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 set noshowmode
+
 
 " For ultisnips plugin
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -122,6 +123,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " to open NERDTree with CTRL-N
 map <C-n> :NERDTreeToggle<CR>
+"map <C-g> :NERDTreeToggle<CR>
 " Auto close nerdtree if it's the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeShowHidden=1
@@ -142,6 +144,9 @@ let Tlist_Use_Right_Window=1
 "nmap <leader>g :TlistToggle<CR>
 nnoremap <leader>g :TlistToggle<CR>
 
+
+" This allows full background colors in tmux
+set t_ut=
 
 "turn off visual bell
 set vb t_vb=
@@ -164,14 +169,15 @@ set lazyredraw
 
 "set modelines " security related - I don't have anything that uses modelines
 set encoding=utf-8
-"set autowrite  " I don't like the implications of this when I run in multiple terms and autoread is questionable.
+"set autowrite
 set autoread
 
 let mapleader = ","
 
-"colorscheme wallaby
 "colorscheme ir_black
 "colorscheme wombat256mod
+"
+"colorscheme wombat256i
 colorscheme wombat_scc
 " Automatically indent on new lines
 set autoindent
@@ -181,7 +187,7 @@ set autoindent
 "nnoremap / /\v
 "vnoremap / /\v
 
-" remap to find matching with tabs 
+" remap to find matching with tabs
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -255,11 +261,13 @@ set t_Co=256
 " So you can paste without autotabs. F2 to toggle on and off
 set pastetoggle=<F2>
 
-" to allow full color background in tmux: (depending on color scheme)
+"to allow full color backgrounds in tmux
 set t_ut=
 
 "turns on the background for the current line
 set cursorline
+
+set ttyfast
 
 " Smart way to move between windows
 nnoremap <C-j> <C-W>j
@@ -296,7 +304,7 @@ inoremap <C-@> <C-x><C-o>
 "  Depends on GUI or not.
 
 " Bubble single linec
-" NOTE - this doesn't work on mac... 
+" NOTE - this doesn't work on mac...
 nnoremap <silent> <C-Up>   :move-2<CR>==
 nnoremap <silent> <C-Down> :move+<CR>==
 xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
