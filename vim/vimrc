@@ -333,6 +333,12 @@ nnoremap <leader>q gqip
 " Open a split window (vertically)
 nnoremap <leader>w <C-w>v<C-w>l
 
+" yanking and pasting single words. P is to reuse the buffer
+nnoremap <leader>y yiw
+nnoremap <leader>p viwp
+xnoremap <leader>P "_dP
+"nnoremap <leader>P viw"0p
+
 " open a split horizontally
 nnoremap <leader>h <C-w>s<C-w>l
 
