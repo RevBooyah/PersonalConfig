@@ -45,10 +45,16 @@ Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal
 "Bundle 'm2mdas/phpcomplete-extended'
 
 Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tmhedberg/matchit'
 Plugin 'mileszs/ack.vim'
+Plugin 'arecarn/selection.vim'
+" This is a badass plugin to do math for you. Thanks Ryan Carney!
+Plugin 'arecarn/chunch.vim'
+
+" Only works in terminals with good color support
+"Plugin 'ap/vim-css-color'
 
 " For snipmate
 "Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -198,6 +204,8 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 imap jj <ESC>
+imap kkk <ESC>
+
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
@@ -211,7 +219,8 @@ vmap <D-k> <M-k>
 endif
 
 "FuzzyFinder Shortcuts
-nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+nmap <leader>f :FufFile **/<CR>
+nmap <leader>z :FufFileWithCurrentBufferDir<CR>
 nmap <leader>b :FufBuffer<CR>
 nmap <leader>T :FufTaggedFile<CR>
 
@@ -260,6 +269,7 @@ syntax enable
 set t_Co=256
 " So you can paste without autotabs. F2 to toggle on and off
 set pastetoggle=<F2>
+nmap \o :set paste!<CR>
 
 "to allow full color backgrounds in tmux
 set t_ut=
@@ -279,6 +289,33 @@ nnoremap <C-l> <C-W>l
 map <f9> :make
 set makeprg=make
 "  debug help=>   :copen, :cclose, :cw
+
+" Moving with wrapped lines more sane:
+nmap j gj
+nmap k gk
+
+" emacs-y type movements - from a mispent youth living in emacs
+:cnoremap <C-a>  <Home>
+":cnoremap <C-b>  <Left>
+":cnoremap <C-f>  <Right>
+:cnoremap <C-d>  <Delete>
+":cnoremap <M-b>  <S-Left>
+":cnoremap <M-f>  <S-Right>
+":cnoremap <M-d>  <S-right><Delete>
+":cnoremap <Esc>b <S-Left>
+":cnoremap <Esc>f <S-Right>
+":cnoremap <Esc>d <S-right><Delete>
+:cnoremap <C-g>  <C-c>
+
+" Switching between buffers in a much easier way.  Instead of <C-Shift-6>
+:nmap <C-e> :e#<CR>
+
+" These are the buffer switchers I use. I don't recommend them to anyone. They
+" match MY habits
+:nmap <C-o> :bnext<CR>
+:nmap <C-p> :bprev<CR>
+
+
 
 " Easy PHP testing
 map <C-M> :w!<CR>:!/usr/bin/php -l %<CR>
@@ -319,6 +356,10 @@ nnoremap <C-A-up> YPj
 xnoremap <C-A-up> y`<Pgv
 
 
+" adding a space above with shift-enter and below with enter
+nmap <S-Enter> O<Esc>j
+nmap <CR> o<Esc>k
+
 map ff ggVG=  " re-indent the entire file.
 
 " ft = fold tag (in HTML)
@@ -330,14 +371,14 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " HARD REWRAP - useful for text writing of paragraphs
 nnoremap <leader>q gqip
 
-" Open a split window (vertically)
-nnoremap <leader>w <C-w>v<C-w>l
-
 " yanking and pasting single words. P is to reuse the buffer
 nnoremap <leader>y yiw
 nnoremap <leader>p viwp
 xnoremap <leader>P "_dP
 "nnoremap <leader>P viw"0p
+
+" Open a split window (vertically)
+nnoremap <leader>w <C-w>v<C-w>l
 
 " open a split horizontally
 nnoremap <leader>h <C-w>s<C-w>l
