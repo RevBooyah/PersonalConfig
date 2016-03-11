@@ -52,6 +52,11 @@ Plugin 'mileszs/ack.vim'
 Plugin 'arecarn/selection.vim'
 " This is a badass plugin to do math for you. Thanks Ryan Carney!
 Plugin 'arecarn/chunch.vim'
+Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
+Plugin 'arecarn/auto-autoread.vim'
+" Use gb and gB to switch/wrap between buffers.
+Plugin 'arecarn/go-to-buffer.vim'
+"Plugin 'arecarn/binascii.vim'
 
 " Only works in terminals with good color support
 "Plugin 'ap/vim-css-color'
@@ -133,6 +138,25 @@ map <C-n> :NERDTreeToggle<CR>
 " Auto close nerdtree if it's the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeShowHidden=1
+
+" Command line wild modes
+set wildmode=full
+set wildmenu
+set wildcharm=<TAB>
+
+" File Searching
+" ignored files
+set wildignore=*.o,*.obj,*.pyc,*.DS_Store,*.out,HEAD,*.lst,*.i,*.map,tags*,cscope.out
+" lower priority files suffixes
+set suffixes=.bak,~,.o,.info,.swp,.obj,.git,.hg,.svn
+
+set path=
+set path+=.  " To search relative to the directory of the current file
+set path+=,, " To search in the current directory
+set path+=** " Relative to the current directory search recursively
+
+
+
 
 " show open buffers and lets you select one
 :nnoremap <F5> :buffers<CR>:buffer<Space>
