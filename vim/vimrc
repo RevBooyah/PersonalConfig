@@ -13,36 +13,22 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-"Bundle 'tobyS/pdv'
-"Plugin 'tobyS/vmustache'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'flazz/vim-colorschemes'
-"Plugin 'valloric/YouCompleteMe'
-"Plugin 'ervandew/screen'
 Plugin 'ervandew/supertab'
 Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
-" Plugin 'spf13/piv'
 Plugin 'vim-scripts/Better-CSS-Syntax-for-Vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/Terminus'
-"Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'brauner/vimtux'
 Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/unite.vim'
-"Bundle 'Shougo/vimproc'
-"Bundle 'Shougo/unite.vim'
-"Bundle 'm2mdas/phpcomplete-extended'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -56,7 +42,10 @@ Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in brows
 Plugin 'arecarn/auto-autoread.vim'
 " Use gb and gB to switch/wrap between buffers.
 Plugin 'arecarn/go-to-buffer.vim'
-"Plugin 'arecarn/binascii.vim'
+
+"fuzzy Finder
+Plugin 'eparreno/vim-l9'
+Plugin 'vim-scripts/FuzzyFinder'
 
 " Only works in terminals with good color support
 "Plugin 'ap/vim-css-color'
@@ -67,16 +56,34 @@ Plugin 'arecarn/go-to-buffer.vim'
 "Plugin 'garbas/vim-snipmate'
 "Plugin 'yegappan/mru'
 
-"fuzzy Finder
-Plugin 'eparreno/vim-l9'
-Plugin 'vim-scripts/FuzzyFinder'
-
 "Fun Stuff
 "Plugin 'joshhartigan/vim-reddit'
 "Plugin 'ryanss/vim-hackernews'
 "Plugin 'vim-scripts/matrix.vim--Yang'
 
+" Various plugins I usually don't use, but may...
 "Bundle 'joonty/vim-phpqa.git'
+"Bundle 'tobyS/pdv'
+"Plugin 'tobyS/vmustache'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+"Plugin 'valloric/YouCompleteMe'
+"Plugin 'ervandew/screen'
+"Plugin '2072/PHP-Indenting-for-VIm'
+"Plugin 'spf13/piv'
+"Plugin 'vim-scripts/Vim-R-plugin'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/unite.vim'
+"Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/unite.vim'
+"Bundle 'm2mdas/phpcomplete-extended'
+"Plugin 'arecarn/binascii.vim'
+
+
+
+
+
+
 "     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "
 " function: TabMerge could be installed
