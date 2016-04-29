@@ -44,7 +44,7 @@ Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal
 "Bundle 'Shougo/vimproc'
 "Bundle 'Shougo/unite.vim'
 "Bundle 'm2mdas/phpcomplete-extended'
-
+Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'nathanaelkane/vim-indent-guides'
