@@ -36,10 +36,12 @@ extract () {
           *.tar.bz2)   tar xvjf $1    ;;
           *.tar.gz)    tar xvzf $1    ;;
           *.bz2)       bunzip2 $1     ;;
+          *.xz)        unxz $1        ;;
           *.rar)       rar x $1       ;;
           *.gz)        gunzip $1      ;;
           *.tar)       tar xvf $1     ;;
           *.tbz2)      tar xvjf $1    ;;
+          *.txz)       tar xvJf $1    ;;
           *.tgz)       tar xvzf $1    ;;
           *.zip)       unzip $1       ;;
           *.Z)         uncompress $1  ;;
@@ -61,7 +63,7 @@ function mkcdr {
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
-
+mktxz() { tar cvJf "${1%%/}.txz" "${1%%/}/"; }
 
 # requires gpg
 # the proper way to use these functions is simply to enter "encrypt filename" or "decrypt filename"
