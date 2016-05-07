@@ -75,6 +75,10 @@ decrypt ()
 gpg --no-options "$1"
 }
 
+function todo() {
+        egrep --color -n -r --include=*.c --include=*.cpp --include=*.py --include=*.r --include=*.js --include=*.css --include=*.sh --include=*.php -i "todo" *
+} 
+
 function ii() # get current host related info
 {
     echo -e "\nYou are logged on ${RED}$HOST"
