@@ -209,7 +209,8 @@ set encoding=utf-8
 "set autowrite
 set autoread
 
-let mapleader = ","
+"let mapleader = ","
+let g:mapleader = "\<Space>"
 
 "colorscheme ir_black
 "colorscheme wombat256mod
