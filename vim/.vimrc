@@ -212,6 +212,9 @@ set autoread
 "let mapleader = ","
 let g:mapleader = "\<Space>"
 
+" easier buffer alternate
+nnoremap <Backspace>  <C-^>
+
 "colorscheme ir_black
 "colorscheme wombat256mod
 "
