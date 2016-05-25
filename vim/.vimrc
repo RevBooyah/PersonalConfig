@@ -127,6 +127,8 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 set noshowmode
 
+":X to encrypt the file
+set cm=blowfish
 
 " For ultisnips plugin
 let g:UltiSnipsExpandTrigger="<tab>"
