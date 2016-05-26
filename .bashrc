@@ -16,6 +16,9 @@ alias da='date "+%Y-%m-%d %A    %T %Z"'
 alias ports='netstat -nape --inet'
 alias kernal='uname -smr'
 
+#I'm using vim - efficiency matters. My vim-golf-fu is strong...
+alias v='/usr/local/bin/vim'
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
