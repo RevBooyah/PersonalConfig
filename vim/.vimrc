@@ -406,13 +406,21 @@ nnoremap <leader>F Vatzf
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " HARD REWRAP - useful for text writing of paragraphs
-nnoremap <leader>q gqip
+"nnoremap <leader>q gqip
 
 " yanking and pasting single words. P is to reuse the buffer
 nnoremap <leader>y yiw
 nnoremap <leader>p viwp
 xnoremap <leader>P "_dP
 "nnoremap <leader>P viw"0p
+
+" Putting quotes around single words (with . repeat working)
+":nnoremap <Leader>q" ciw"<Esc>P
+":nnoremap <Leader>q' ciw'<Esc>P
+:nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P'"
+:nnoremap <Leader>q' ciw'<C-r><C-o>"'<Esc>
+:nnoremap <Leader>q" ciw"<C-r><C-o>""<Esc>
+
 
 " Open a split window (vertically)
 nnoremap <leader>w <C-w>v<C-w>l
@@ -435,7 +443,7 @@ noremap <c-e> $
 
 " tabs stuff
 nnoremap <leader>t :tabnew<CR>
-nnoremap <leader>q :tabclose<CR>
+"nnoremap <leader>q :tabclose<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-q> :tabclose<CR>
 "nnoremap <C-S-t>     :tabclose<CR>
