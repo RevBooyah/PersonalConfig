@@ -36,6 +36,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tmhedberg/matchit'
 Plugin 'mileszs/ack.vim'
 Plugin 'arecarn/selection.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 " This is a badass plugin to do math for you. Thanks Ryan Carney!
 Plugin 'arecarn/chunch.vim'
 Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
@@ -104,6 +106,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" For vim Session manager
+let g:session_directory = $HOME ."/.vim/sessions/"
+let g:session_autosave = 'no'
+
 
 " For PHP Documenter (pdv)
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
@@ -271,8 +278,9 @@ set copyindent
 set shiftwidth=4
 " Pressing tab in insert mode will use 4 spaces
 set softtabstop=4
-" Use spaces instead of tabs
-set expandtab
+" Use spaces instead of tabs - why would anybody do that?
+"set expandtab
+set noexpandtab
 " Highlight matching braces/tags
 set showmatch
 " Ignore case when searching
