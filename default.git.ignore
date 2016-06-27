@@ -1,0 +1,14 @@
+[Tt]humbs.db
+*.DS_Store
+
+*.swp
+*.swo
+*.log
+*.dat
+*.un~
+subjob*/
+input/
+output/
+upload/
+logs/
+backups/
