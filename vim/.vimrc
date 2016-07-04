@@ -160,7 +160,7 @@ let NERDTreeShowHidden=1
 " Command line wild modes
 set wildmode=full
 set wildmenu
-set wildcharm=<TAB>
+set wildchar=<TAB>
 
 " File Searching
 " ignored files
