@@ -46,6 +46,7 @@ Plugin 'arecarn/chunch.vim'
 Plugin 'arecarn/auto-autoread.vim'
 " Use gb and gB to switch/wrap between buffers.
 Plugin 'arecarn/go-to-buffer.vim'
+Plugin 'SirVer/ultisnips'
 
 "fuzzy Finder
 Plugin 'eparreno/vim-l9'
@@ -69,7 +70,6 @@ Plugin 'vim-scripts/FuzzyFinder'
 "Bundle 'joonty/vim-phpqa.git'
 "Bundle 'tobyS/pdv'
 "Plugin 'tobyS/vmustache'
-"Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 "Plugin 'valloric/YouCompleteMe'
 "Plugin 'ervandew/screen'
@@ -140,9 +140,10 @@ set noshowmode
 set cm=blowfish
 
 " For ultisnips plugin
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsDontReverseSearchPath = 1 " for override to work with Vundle
 
 " for phpcomplete-extended
 autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
