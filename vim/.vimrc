@@ -2,8 +2,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-"TODO: Need to update this to work on windows gVim.
-
 " before running the first time, install Vundle with:
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
@@ -18,7 +16,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Bundle 'jistr/vim-nerdtree-tabs'
-"Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'jaxbot/semantic-highlight.vim'
@@ -36,21 +34,21 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tmhedberg/matchit'
-"Plugin 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'arecarn/selection.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
 " This is a badass plugin to do math for you. Thanks Ryan Carney!
-Plugin 'arecarn/chunch.vim'
-"Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
-Plugin 'arecarn/auto-autoread.vim'
+"Plugin 'arecarn/chunch.vim'
+Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
+"Plugin 'arecarn/auto-autoread.vim'
 " Use gb and gB to switch/wrap between buffers.
 Plugin 'arecarn/go-to-buffer.vim'
-Plugin 'SirVer/ultisnips'
 
 "fuzzy Finder
 Plugin 'eparreno/vim-l9'
 Plugin 'vim-scripts/FuzzyFinder'
+
+Plugin 'dracula/vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Only works in terminals with good color support
 "Plugin 'ap/vim-css-color'
@@ -70,6 +68,7 @@ Plugin 'vim-scripts/FuzzyFinder'
 "Bundle 'joonty/vim-phpqa.git'
 "Bundle 'tobyS/pdv'
 "Plugin 'tobyS/vmustache'
+"Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 "Plugin 'valloric/YouCompleteMe'
 "Plugin 'ervandew/screen'
@@ -109,14 +108,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" For vim Session manager
-let g:session_directory = $HOME ."/.vim/sessions/"
-let g:session_autosave = 'no'
-
-
 " For PHP Documenter (pdv)
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+"let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+"nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
 let g:airline_powerline_fonts = 1
 
@@ -125,9 +119,13 @@ function! AirlineThemePatch(palette)
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 
-let g:Powerline_symbols         = "fancy"
+"let g:Powerline_symbols         = "fancy"
 let g:airline_theme             = 'powerlineish'
+"let g:airline_theme             = 'wikipedia'
 "let g:airline_theme             = 'wombat'
+"let g:airline_theme             = 'sol'
+"let g:airline_theme             = 'hybrid'
+"let g:airline_theme             = 'solarizedlight'
 
 let g:airline#extensions#tabline#enabled = 1 " automatically displays all buffers when there's only one tab open
 "let g:airline#extensions#tabline#left_sep = ' '            " straight separators
@@ -140,10 +138,9 @@ set noshowmode
 set cm=blowfish
 
 " For ultisnips plugin
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsDontReverseSearchPath = 1 " for override to work with Vundle
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " for phpcomplete-extended
 autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
@@ -161,7 +158,7 @@ let NERDTreeShowHidden=1
 " Command line wild modes
 set wildmode=full
 set wildmenu
-set wildchar=<TAB>
+set wildcharm=<TAB>
 
 " File Searching
 " ignored files
@@ -232,6 +229,9 @@ nnoremap <Backspace>  <C-^>
 "
 "colorscheme wombat256i
 colorscheme wombat_scc
+"colorscheme facebook
+"colorscheme wikipedia
+"colorscheme sol-term
 " Automatically indent on new lines
 set autoindent
 "set ai
@@ -281,9 +281,8 @@ set copyindent
 set shiftwidth=4
 " Pressing tab in insert mode will use 4 spaces
 set softtabstop=4
-" Use spaces instead of tabs - why would anybody do that?
-"set expandtab
-set noexpandtab
+" Use spaces instead of tabs
+set expandtab
 " Highlight matching braces/tags
 set showmatch
 " Ignore case when searching
@@ -315,6 +314,9 @@ syn sync fromstart
 syntax enable
 " Tell vim that your terminal supports 256 colors
 set t_Co=256
+set term=xterm-256color
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
 " So you can paste without autotabs. F2 to toggle on and off
 set pastetoggle=<F2>
 nmap \o :set paste!<CR>
