@@ -44,8 +44,9 @@ Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in brows
 Plugin 'arecarn/go-to-buffer.vim'
 
 "fuzzy Finder
-Plugin 'eparreno/vim-l9'
-Plugin 'vim-scripts/FuzzyFinder'
+"Plugin 'eparreno/vim-l9'
+"Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'dracula/vim'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -591,3 +592,15 @@ endif
 let g:DisableAutoPHPFolding = 1
 "setlocal foldmethod=manual
 "EnableFastPHPFolds
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" ignore stupid files 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
