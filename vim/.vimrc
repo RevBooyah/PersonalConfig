@@ -21,6 +21,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'alessandroyorba/despacio'
 Plugin 'ervandew/supertab'
 Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
@@ -228,11 +229,13 @@ nnoremap <Backspace>  <C-^>
 "colorscheme ir_black
 "colorscheme wombat256mod
 "
-"colorscheme wombat256i
-colorscheme wombat_scc
 "colorscheme facebook
 "colorscheme wikipedia
 "colorscheme sol-term
+"colorscheme wombat256i
+"colorscheme wombat_scc
+let g:despacio_Twilight = 1 "dark, but not too dark. Campfire is good too
+colorscheme despacio
 " Automatically indent on new lines
 set autoindent
 "set ai
