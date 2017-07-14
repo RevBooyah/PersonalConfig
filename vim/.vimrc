@@ -279,6 +279,10 @@ nmap <leader>T :FufTaggedFile<CR>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
+" double tap space (leader) to insert a single character
+nmap <silent> <leader><space> "=nr2char(getchar())<cr>P
+
+
 " Copy the indentation of the previous line if auto indent doesn't know what to do
 set copyindent
 " Indenting a line with >> or << will indent or un-indent by 4
