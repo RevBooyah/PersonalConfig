@@ -15,6 +15,7 @@ alias stamp='date "+%Y%m%d%a%H%M"'
 alias da='date "+%Y-%m-%d %A    %T %Z"'
 alias ports='netstat -nape --inet'
 alias kernal='uname -smr'
+alias bigtime='watch -n1 "date '+%D%n%T'|figlet -k -f big"'
 
 #I'm using vim - efficiency matters. My vim-golf-fu is strong...
 alias v='/usr/local/bin/vim'
