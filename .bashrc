@@ -17,6 +17,11 @@ alias ports='netstat -nape --inet'
 alias kernal='uname -smr'
 alias bigtime='watch -n1 "date '+%D%n%T'|figlet -k -f big"'
 alias topclock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &'
+alias dups='find -not -empty -type f -printf "%s\n" | sort -rn | uniq -d | xargs -I{} -n1 find -type f -size {}c -print0 | xargs -0 md5sum | sort | uniq -w32 --all-repeated=separate'
+
+alias distro='cat /etc/issue'
+alias memhogs='ps auxgww | sort -nk +4 | tail'
+
 
 #I'm using vim - efficiency matters. My vim-golf-fu is strong...
 alias v='/usr/local/bin/vim'
@@ -86,8 +91,26 @@ function todo() {
         egrep --color -n -r --include=*.c --include=*.cpp --include=*.py --include=*.r --include=*.js --include=*.css --include=*.sh --include=*.php -i "todo" *
 } 
 
+# ls with a "tree" view.
+function tree() {
+        ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+}
+
+function hostConnections() {
+        netstat -an | grep ESTABLISHED | awk '{print $5}' | awk -F: '{print $1}' | sort | uniq -c | awk '{ printf("%s\t%s\t",$2,$1) ; for (i = 0; i < $1; i++) {printf("*")}; print "" }'
+}
+# ps with a grep (I do this a lot, so why not shorten?)
+function psg() {
+        ps auxgww | egrep $@
+}
+
+# Intercept the stdio/err of the process id (1st arg is the proc id
+function intercept() {
+        strace -ff -e trace=write -e write=1,2 -p $1
+}
+
 function ripsite() {
-        wget --random-wait -r -p -e robots=off -U mozilla !@
+        wget --random-wait -r -p -e robots=off -U mozilla $@
 #        --limit-rate=20k limits the rate at which it downloads files.
 #       -b continues wget after logging out.
 #       -o $HOME/wget_log.txt logs the output
