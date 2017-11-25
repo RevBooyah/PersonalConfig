@@ -16,6 +16,7 @@ alias da='date "+%Y-%m-%d %A    %T %Z"'
 alias ports='netstat -nape --inet'
 alias kernal='uname -smr'
 alias bigtime='watch -n1 "date '+%D%n%T'|figlet -k -f big"'
+alias topclock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &'
 
 #I'm using vim - efficiency matters. My vim-golf-fu is strong...
 alias v='/usr/local/bin/vim'
@@ -84,6 +85,13 @@ gpg --no-options "$1"
 function todo() {
         egrep --color -n -r --include=*.c --include=*.cpp --include=*.py --include=*.r --include=*.js --include=*.css --include=*.sh --include=*.php -i "todo" *
 } 
+
+function ripsite() {
+        wget --random-wait -r -p -e robots=off -U mozilla !@
+#        --limit-rate=20k limits the rate at which it downloads files.
+#       -b continues wget after logging out.
+#       -o $HOME/wget_log.txt logs the output
+}
 
 function ii() # get current host related info
 {
