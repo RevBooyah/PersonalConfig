@@ -18,9 +18,10 @@ alias kernal='uname -smr'
 alias bigtime='watch -n1 "date '+%D%n%T'|figlet -k -f big"'
 alias topclock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &'
 alias dups='find -not -empty -type f -printf "%s\n" | sort -rn | uniq -d | xargs -I{} -n1 find -type f -size {}c -print0 | xargs -0 md5sum | sort | uniq -w32 --all-repeated=separate'
-
+alias colors'for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
 alias distro='cat /etc/issue'
 alias memhogs='ps auxgww | sort -nk +4 | tail'
+alias weather='curl wttr.in/87120'
 
 
 #I'm using vim - efficiency matters. My vim-golf-fu is strong...
@@ -87,6 +88,16 @@ decrypt ()
 gpg --no-options "$1"
 }
 
+# Get unread gmail. $1 is username (email) and $2 is password
+function unreadGmail() {
+        curl -u $1:"$2" --silent "https://mail.google.com/mail/feed/atom" | tr -d '\n' | awk -F '<entry>' '{for (i=2; i<=NF; i++) {print $i}}' | sed -n "s/<title>\(.*\)<\/title.*name>\(.*\)<\/name>.*/\2 - \1/p"
+}
+
+# recursive grep
+function rgrep() {
+        grep --color=auto -RnisI $1 *
+}
+
 function todo() {
         egrep --color -n -r --include=*.c --include=*.cpp --include=*.py --include=*.r --include=*.js --include=*.css --include=*.sh --include=*.php -i "todo" *
 } 
@@ -116,6 +127,9 @@ function ripsite() {
 #       -o $HOME/wget_log.txt logs the output
 }
 
+function getYoutube() {
+        wget http://www.youtube.com/watch?v=$1 -qO- | sed -n "/fmt_url_map/{s/[\'\"\|]/\n/g;p}" | sed -n '/^fmt_url_map/,/videoplayback/p' | sed -e :a -e '$q;N;5,$D;ba' | tr -d '\n' | sed -e 's/\(.*\),\(.\)\{1,3\}/\1/' | wget -i - -O output.flv
+}
 function ii() # get current host related info
 {
     echo -e "\nYou are logged on ${RED}$HOST"
