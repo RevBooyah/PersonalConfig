@@ -27,7 +27,8 @@ Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
 Plugin 'vim-scripts/Better-CSS-Syntax-for-Vim'
 Plugin 'vim-scripts/taglist.vim'
-Plugin 'vim-scripts/Terminus'
+" This causes weird "q" characters in securecrt terminal
+"Plugin 'vim-scripts/Terminus'
 Plugin 'brauner/vimtux'
 Plugin 'godlygeek/csapprox'  " add ability to handle gui colorscheme in terminal
 Plugin 'leafgarland/typescript-vim'
@@ -42,7 +43,7 @@ Plugin 'arecarn/selection.vim'
 Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
 "Plugin 'arecarn/auto-autoread.vim'
 " Use gb and gB to switch/wrap between buffers.
-Plugin 'arecarn/go-to-buffer.vim'
+"Plugin 'arecarn/go-to-buffer.vim'
 
 "fuzzy Finder
 "Plugin 'eparreno/vim-l9'
