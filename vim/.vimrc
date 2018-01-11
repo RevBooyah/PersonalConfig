@@ -258,6 +258,11 @@ vnoremap <F1> <ESC>
 imap jj <ESC>
 imap kkk <ESC>
 
+" use s/S for single char inserts. Which I do a LOT more than line Subst
+:nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
+:nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+" There is a function to allow <#>s repeat, but I don't want it :)
+
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
