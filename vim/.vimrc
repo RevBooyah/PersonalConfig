@@ -343,11 +343,18 @@ set cursorline
 
 set ttyfast
 
-" Smart way to move between windows
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
+" Smart way to move between windows - opted for word movements with ctrl
+" Note - ctrl-l overwrite requires :redraw or just do it in insert mode
+"nnoremap <C-j> <C-W>j
+"nnoremap <C-k> <C-W>k
+"nnoremap <C-h> <C-W>h
+"nnoremap <C-l> <C-W>l
+" I found this really handy and saves finger stretching for other chords.
+nnoremap <C-j> }
+nnoremap <C-k> {
+nnoremap <C-h> b
+nnoremap <C-l> w
+
 
 " faster than typeing make
 map <f9> :make
