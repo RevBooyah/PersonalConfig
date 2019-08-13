@@ -26,7 +26,7 @@ Plugin 'ervandew/supertab'
 Plugin 'powerline/powerline'
 Bundle 'captbaritone/better-indent-support-for-php-with-html'
 Plugin 'vim-scripts/Better-CSS-Syntax-for-Vim'
-Plugin 'vim-scripts/taglist.vim'
+"Plugin 'vim-scripts/taglist.vim'
 " This causes weird "q" characters in securecrt terminal
 "Plugin 'vim-scripts/Terminus'
 Plugin 'brauner/vimtux'
@@ -40,7 +40,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'arecarn/selection.vim'
 " This is a badass plugin to do math for you. Thanks Ryan Carney!
 "Plugin 'arecarn/chunch.vim'
-Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
+"Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in browser.
 "Plugin 'arecarn/auto-autoread.vim'
 " Use gb and gB to switch/wrap between buffers.
 "Plugin 'arecarn/go-to-buffer.vim'
@@ -48,10 +48,10 @@ Plugin 'arecarn/Frisk.vim'   " :Frisk <searchterm> opens search results in brows
 "fuzzy Finder
 "Plugin 'eparreno/vim-l9'
 "Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'dracula/vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 " Only works in terminals with good color support
 "Plugin 'ap/vim-css-color'
@@ -123,7 +123,7 @@ endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 
 "let g:Powerline_symbols         = "fancy"
-let g:airline_theme             = 'powerlineish'
+"let g:airline_theme             = 'powerlineish'
 "let g:airline_theme             = 'wikipedia'
 "let g:airline_theme             = 'wombat'
 "let g:airline_theme             = 'sol'
