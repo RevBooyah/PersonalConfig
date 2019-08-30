@@ -22,7 +22,9 @@ alias colors'for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; d
 alias distro='cat /etc/issue'
 alias memhogs='ps auxgww | sort -nk +4 | tail'
 alias weather='curl -s wttr.in/87120'
-alias weather2='curl =s v2.wttr.in/87120'
+alias weather2='curl -s v2.wttr.in/87120'
+alias btc='curl -s rate.sx/btc@10d'
+alias pyq='curl -s cht.sh/python/$@'
 
 
 #I'm using vim - efficiency matters. My vim-golf-fu is strong...
