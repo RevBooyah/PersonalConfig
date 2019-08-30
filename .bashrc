@@ -21,7 +21,8 @@ alias dups='find -not -empty -type f -printf "%s\n" | sort -rn | uniq -d | xargs
 alias colors'for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
 alias distro='cat /etc/issue'
 alias memhogs='ps auxgww | sort -nk +4 | tail'
-alias weather='curl wttr.in/87120'
+alias weather='curl -s wttr.in/87120'
+alias weather2='curl =s v2.wttr.in/87120'
 
 
 #I'm using vim - efficiency matters. My vim-golf-fu is strong...
